@@ -1,4 +1,4 @@
-// selecting all the elements of html
+// Selecting all the elements of HTML
 const currentTime = document.querySelector('.cur-time');
 const setNewAlarm = document.querySelector('.set-time');
 const setNewAlarmBtn = document.querySelector('#set-alarm-btn');
@@ -6,10 +6,8 @@ const preSetAlarmTime = document.querySelector('.preSetAlarmTime');
 const deleteBtn = document.querySelector('.dlt-alarm-btn');
 const allAlarmsContainer = document.querySelector('#all-alarms');
 
-
-
 // --------------------------------------------
-// display the current time
+// Display the current time
 
 function updateTime() {
     let currentDate = new Date();
@@ -17,15 +15,15 @@ function updateTime() {
     let minutes = currentDate.getMinutes();
     let seconds = currentDate.getSeconds();
 
-    // selecting am or pm
+    // Selecting AM or PM
     var ampm = (hours >= 12) ? "PM" : "AM";
 
-    // getting hours minutes and seconds
-    hours = (hours < 10) ? "0" + hours : hours - 12;
+    // Getting hours, minutes, and seconds
+    hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-    // setting the tet content to current time
+    // Setting the text content to current time
     let currentTimeString = `${hours} : ${minutes} : ${seconds} ${ampm}`;
     currentTime.textContent = currentTimeString;
 }
@@ -33,26 +31,24 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime();
 
-
 // --------------------------------------------
-// setting new alarm 
+// Setting new alarm
 
 setNewAlarmBtn.addEventListener('click', () => {
-    // getting the input value
+    // Getting the input value
     const timeInput = setNewAlarm.value;
     let [hourVal, minVal] = timeInput.split(':');
 
     const period = hourVal >= 12 ? 'PM' : 'AM';
 
-    // console.log(minVal, hourVal)
+    // Adjusting hourVal for 12-hour format
     if (hourVal === '00') {
         hourVal = 12;
-    }
-    if (hourVal > 12) {
+    } else if (hourVal > 12) {
         hourVal %= 12;
     }
 
-    // html for newly created alarm
+    // HTML for the newly created alarm
     const newAlarm = `
             <div class="alarm">
                 <p class="preSetAlarmTime">
@@ -64,17 +60,42 @@ setNewAlarmBtn.addEventListener('click', () => {
             </div>
         `;
 
-    // inserting the html to the container
-    setTimeout(() => {
-        allAlarmsContainer.insertAdjacentHTML('beforeend', newAlarm);
-        setNewAlarm.value = '00:00';
-        startCountDown(hourVal, minVal, period);
-    }, 300);
+    // Inserting the HTML to the container
+    allAlarmsContainer.insertAdjacentHTML('beforeend', newAlarm);
 
+    // Starting countdown for the new alarm
+    startCountDown(hourVal, minVal, period);
+
+    // Clearing the input field
+    setNewAlarm.value = '00:00';
 });
 
 // --------------------------------------------
+// Deleting the alarm
+
+allAlarmsContainer.addEventListener('click', (e) => {
+    // Checking if delete alarm btn is present or not
+    if (e.target.classList.contains('dlt-alarm-btn')) {
+
+        // Finding the closest element
+        const alarmElement = e.target.closest('.alarm');
+
+        // Deleting the alarm
+        if (alarmElement) {
+            alarmElement.remove();
+        }
+    }
+});
+
+// --------------------------------------------
+// Countdown function
+
 function startCountDown(hours, minutes, period) {
+    const now = new Date();
+    const currentHours = now.getHours();
+    const currentMinutes = now.getMinutes();
+    let targetDate = new Date();
+
     // Convert hours to 24-hour format if PM
     if (period.toLowerCase() === 'pm') {
         hours = (hours % 12) + 12;
@@ -82,30 +103,18 @@ function startCountDown(hours, minutes, period) {
         hours = hours % 12;
     }
 
-    // calculating seconds
-    const totalMin = (hours * 60) + minutes;
-    let totalSeconds = totalMin * 60;
+    // Check if the specified time has already passed today
+    if (currentHours > hours || (currentHours === hours && currentMinutes > minutes)) {
+        // If yes, set the alarm for the same time on the next day
+        targetDate.setDate(targetDate.getDate() + 1);
+    }
+
+    // Set the target time on the specified date
+    targetDate.setHours(hours, minutes, 0, 0);
+
+    const remainingTime = targetDate.getTime() - now.getTime();
 
     setTimeout(() => {
-        alert('alarm ended!!');
-   }, totalSeconds * 1000); 
+        alert('Alarm ended!!');
+    }, remainingTime);
 }
-
-// --------------------------------------------
-// deleting the alarm
-
-allAlarmsContainer.addEventListener('click', (e) => {
-    // checking if delete alarm btn is present or not
-    if (e.target.classList.contains('dlt-alarm-btn')) {
-
-        // finding the closest element
-        const alarmElement = e.target.closest('.alarm');
-
-        // deleting the alarm
-        // if (alarmElement) {
-        //     setTimeout(() => {
-        //         alarmElement.remove();
-        //     }, 300);
-        // }
-    }
-});

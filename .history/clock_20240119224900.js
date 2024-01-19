@@ -1,3 +1,4 @@
+
 // selecting all the elements of html
 const currentTime = document.querySelector('.cur-time');
 const setNewAlarm = document.querySelector('.set-time');
@@ -36,41 +37,38 @@ updateTime();
 
 // --------------------------------------------
 // setting new alarm 
+// Assuming you have the startCountDown function defined here
 
 setNewAlarmBtn.addEventListener('click', () => {
     // getting the input value
     const timeInput = setNewAlarm.value;
     let [hourVal, minVal] = timeInput.split(':');
 
-    const period = hourVal >= 12 ? 'PM' : 'AM';
-
-    // console.log(minVal, hourVal)
+    // Adjusting hourVal to 24-hour format if needed
     if (hourVal === '00') {
         hourVal = 12;
-    }
-    if (hourVal > 12) {
-        hourVal %= 12;
     }
 
     // html for newly created alarm
     const newAlarm = `
-            <div class="alarm">
-                <p class="preSetAlarmTime">
-                    ${hourVal}:${minVal} ${period}
-                </p>
-                <button type="button" class="dlt-alarm-btn">
-                    Delete
-                </button>
-            </div>
-        `;
+        <div class="alarm">
+            <p class="preSetAlarmTime">
+                ${hourVal}:${minVal} ${hourVal >= 12 ? 'PM' : 'AM'}
+            </p>
+            <button type="button" class="dlt-alarm-btn">
+                Delete
+            </button>
+        </div>
+    `;
 
     // inserting the html to the container
     setTimeout(() => {
         allAlarmsContainer.insertAdjacentHTML('beforeend', newAlarm);
         setNewAlarm.value = '00:00';
-        startCountDown(hourVal, minVal, period);
-    }, 300);
 
+        // starting countdown timer
+        startCountDown(parseInt(hourVal), parseInt(minVal), hourVal >= 12 ? 'PM' : 'AM');
+    }, 300);
 });
 
 // --------------------------------------------
@@ -81,6 +79,7 @@ function startCountDown(hours, minutes, period) {
     } else {
         hours = hours % 12;
     }
+    dat
 
     // calculating seconds
     const totalMin = (hours * 60) + minutes;

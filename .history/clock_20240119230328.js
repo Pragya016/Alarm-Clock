@@ -47,10 +47,7 @@ setNewAlarmBtn.addEventListener('click', () => {
     // console.log(minVal, hourVal)
     if (hourVal === '00') {
         hourVal = 12;
-    }
-    if (hourVal > 12) {
-        hourVal %= 12;
-    }
+    }else if(hourVal >)
 
     // html for newly created alarm
     const newAlarm = `

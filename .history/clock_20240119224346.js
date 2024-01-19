@@ -1,3 +1,4 @@
+
 // selecting all the elements of html
 const currentTime = document.querySelector('.cur-time');
 const setNewAlarm = document.querySelector('.set-time');
@@ -41,22 +42,17 @@ setNewAlarmBtn.addEventListener('click', () => {
     // getting the input value
     const timeInput = setNewAlarm.value;
     let [hourVal, minVal] = timeInput.split(':');
+    
+        // console.log(minVal, hourVal)
+        if (hourVal === '00') {
+            hourVal = 12;
+        }
 
-    const period = hourVal >= 12 ? 'PM' : 'AM';
-
-    // console.log(minVal, hourVal)
-    if (hourVal === '00') {
-        hourVal = 12;
-    }
-    if (hourVal > 12) {
-        hourVal %= 12;
-    }
-
-    // html for newly created alarm
+        // html for newly created alarm
     const newAlarm = `
             <div class="alarm">
                 <p class="preSetAlarmTime">
-                    ${hourVal}:${minVal} ${period}
+                    ${hourVal}:${minVal} ${hourVal >= 12 ? 'PM' : 'AM'}
                 </p>
                 <button type="button" class="dlt-alarm-btn">
                     Delete
@@ -64,12 +60,12 @@ setNewAlarmBtn.addEventListener('click', () => {
             </div>
         `;
 
-    // inserting the html to the container
-    setTimeout(() => {
-        allAlarmsContainer.insertAdjacentHTML('beforeend', newAlarm);
-        setNewAlarm.value = '00:00';
-        startCountDown(hourVal, minVal, period);
-    }, 300);
+        // inserting the html to the container
+        setTimeout(() => {
+            allAlarmsContainer.insertAdjacentHTML('beforeend', newAlarm);
+            setNewAlarm.value = '00:00';
+            startCountDown(hourVal, minVal);
+        }, 300);
 
 });
 
@@ -88,7 +84,7 @@ function startCountDown(hours, minutes, period) {
 
     setTimeout(() => {
         alert('alarm ended!!');
-   }, totalSeconds * 1000); 
+   }, totalSeconds * 1000); // Multiply by 1000 to convert seconds to milliseconds
 }
 
 // --------------------------------------------

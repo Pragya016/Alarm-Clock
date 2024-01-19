@@ -48,9 +48,6 @@ setNewAlarmBtn.addEventListener('click', () => {
     if (hourVal === '00') {
         hourVal = 12;
     }
-    if (hourVal > 12) {
-        hourVal %= 12;
-    }
 
     // html for newly created alarm
     const newAlarm = `
@@ -68,7 +65,7 @@ setNewAlarmBtn.addEventListener('click', () => {
     setTimeout(() => {
         allAlarmsContainer.insertAdjacentHTML('beforeend', newAlarm);
         setNewAlarm.value = '00:00';
-        startCountDown(hourVal, minVal, period);
+        startCountDown(hourVal, minVal, ampm);
     }, 300);
 
 });

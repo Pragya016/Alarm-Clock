@@ -88,6 +88,7 @@ function startCountDown(hours, minutes, period) {
 
     setTimeout(() => {
         alert('alarm ended!!');
+
    }, totalSeconds * 1000); 
 }
 

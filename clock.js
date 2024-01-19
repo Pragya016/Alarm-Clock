@@ -93,6 +93,7 @@ function startCountDown(hours, minutes, period) {
 
 // --------------------------------------------
 // deleting the alarm
+
 allAlarmsContainer.addEventListener('click', (e) => {
     // checking if delete alarm btn is present or not
     if (e.target.classList.contains('dlt-alarm-btn')) {
@@ -101,10 +102,10 @@ allAlarmsContainer.addEventListener('click', (e) => {
         const alarmElement = e.target.closest('.alarm');
 
         // deleting the alarm
-        if (alarmElement) {
-            setTimeout(() => {
-                alarmElement.remove();
-            }, 300);
-        }
+        // if (alarmElement) {
+        //     setTimeout(() => {
+        //         alarmElement.remove();
+        //     }, 300);
+        // }
     }
 });

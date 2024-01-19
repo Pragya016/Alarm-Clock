@@ -7,11 +7,8 @@ const preSetAlarmTime = document.querySelector('.preSetAlarmTime');
 const deleteBtn = document.querySelector('.dlt-alarm-btn');
 const allAlarmsContainer = document.querySelector('#all-alarms');
 
-
-
 // --------------------------------------------
 // display the current time
-
 function updateTime() {
     let currentDate = new Date();
     let hours = currentDate.getHours();
@@ -50,6 +47,7 @@ setNewAlarmBtn.addEventListener('click', () => {
 
         // html for newly created alarm
     const newAlarm = `
+        <li>
             <div class="alarm">
                 <p class="preSetAlarmTime">
                     ${hourVal}:${minVal} ${hourVal >= 12 ? 'PM' : 'AM'}

@@ -7,11 +7,8 @@ const preSetAlarmTime = document.querySelector('.preSetAlarmTime');
 const deleteBtn = document.querySelector('.dlt-alarm-btn');
 const allAlarmsContainer = document.querySelector('#all-alarms');
 
-
-
 // --------------------------------------------
 // display the current time
-
 function updateTime() {
     let currentDate = new Date();
     let hours = currentDate.getHours();

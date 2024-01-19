@@ -43,12 +43,6 @@ font-family: 'Space Grotesk', sans-serif;
 
 /* ----------------------------- */
 
-#current-time{
-    font-size: 1.2rem;
-}
-
-/* ----------------------------- */
-
 .container {
     color: var(--creamColor);
     height: auto;
@@ -73,11 +67,10 @@ font-family: 'Space Grotesk', sans-serif;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin: 50px auto 30px auto; 
+    margin: 30px auto 20px auto; 
 }
 
 .set-time {
-    cursor: pointer;
     border: none;
     background-color: #00000000;
     color: var(--creamColor);

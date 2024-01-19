@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Alarm Clock</title>
+</head>
+
+<body>
+    <div id="box">
+        <h1>Alarm Clock</h1>
+        <div class="container">
+
+            <!-- showing the current time -->
+            <div id="current-time">
+                <h2 class="cur-time"></h2>
+            </div>
+
+            <!-- to set the alarm -->
+            <div id="set-alarm">
+                <h3>
+                    <input type="time" class="set-time" value="00:00">
+                </h3>
+                <button type="button" id="set-alarm-btn">
+                    Set Alarm
+                </button>
+            </div>
+
+            <!-- list of alarms that are already been set -->
+            <div id="all-alarms">
+                <p class="heading"><b>All Alarms</b>
+                </p>
+                <ul>
+                <li class="alarm">
+                    <p class="preSetAlarmTime">
+                        02:30 PM
+                    </p>
+                    <button type="button" class="dlt-alarm-btn">
+                        Delete
+                    </button>
+                </li>
+            </div>
+        </div>
+    </div>
+    <!-- script -->
+    <script src="clock.js"></script>
+</body>
+
+</html>

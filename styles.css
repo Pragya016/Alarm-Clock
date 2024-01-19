@@ -1,0 +1,142 @@
+/* default css styles */
+:root {
+    --creamColor : #F6F1EE;
+    --orangeShadeDark : #ff6600;
+    --OrangeColor : #ED7D31;
+    --brownColor : #6C5F5B;
+    --brownShadeDarker : #5f534f;
+    --orangeShadeDarker : #ba4c28;
+}
+
+body, html{
+    margin: 0;
+    padding: 0;
+}
+
+*{
+    /* box-sizing: border-box; */
+    margin: 0;
+}
+
+/* main container */
+#box{
+    height: auto;
+    padding: 30px;
+    width: 60%;
+    margin: 30px auto;
+    border-radius: 10px;
+    background-color: var(--creamColor);
+}
+
+#box h1{
+    color: var(--orangeShadeDark);
+    text-align: center;
+    margin-top: 10px;
+    font-size: 3rem;
+    overflow: hidden;
+}
+
+/* ----------------------------- */
+
+.container {
+    color: var(--creamColor);
+    height: auto;
+    width: 70%;
+    overflow: scroll;
+    margin: 40px auto 0;
+    padding: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* letter-spacing: 3px; */
+    align-items: center;
+    border-radius: 15px;
+    background-color: var(--OrangeColor);
+    box-shadow: 0px 0px 20px var(--brownColor);
+}
+
+/* ----------------------------- */
+/* set alarm container */
+
+#set-alarm {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 30px auto 20px auto; 
+}
+
+.set-time {
+    border: none;
+    background-color: #00000000;
+    color: var(--creamColor);
+}
+
+.set-time{
+    border: none;
+    font-size: larger;
+    font-weight: 600;
+}
+
+/* ----------------------------- */
+/* all alarms container */
+
+#all-alarms {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+#all-alarms .heading {
+    color: var(--creamColor);
+}
+
+.alarm{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.247);
+    margin-top: 20px;align-items: center;
+    border-radius: 10px;
+}
+
+.alarm .preSetAlarmTime {
+    font-size: 1rem;
+    color: var(--brownShadeDarker);
+}
+
+.dlt-alarm-btn{
+    border: 1px solid var(--creamColor);;
+    background-color: hsl(15, 47%, 58%);
+    color: var(--creamColor);
+}
+
+.dlt-alarm-btn:hover {
+    border-color:var(--orangeShadeDarker); 
+    background-color: #F6F1EE;
+    color: var(--orangeShadeDarker);
+}
+
+/* ----------------------------- */
+
+button {
+    width: auto;
+    margin: auto 0;
+    border-radius: 10px;
+    font: 600;
+    font-size: 0.9rem;
+    border: none;
+     padding: 3px 8px;
+    border: 2px solid #F6F1EE;;
+    background-color: #ED7D31;
+    color: white;
+}
+
+button:hover{
+   color: #ce5300;
+    background-color: var(--creamColor);
+}
